@@ -5,20 +5,21 @@ import useScrollTrigger from "@material-ui/core/useScrollTrigger";
 import { makeStyles } from "@material-ui/styles";
 import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
-import Box from "@material-ui/core/Box";
-import Grid from "@material-ui/core/Grid";
-import { IconButton, Drawer, Hidden, Toolbar } from "@material-ui/core";
+// import Box from "@material-ui/core/Box";
+// import Grid from "@material-ui/core/Grid";
+// import { IconButton, Drawer, Hidden, Toolbar } from "@material-ui/core";
+import { Toolbar } from "@material-ui/core";
 import Button from "@material-ui/core/Button";
 import Paper from "@material-ui/core/Paper";
-import Typography from "@material-ui/core/Typography";
+// import Typography from "@material-ui/core/Typography";
 import { Link } from "react-router-dom";
 
-import List from "@material-ui/core/List";
-import ListItem from "@material-ui/core/ListItem";
-import ListItemText from "@material-ui/core/ListItemText";
+// import List from "@material-ui/core/List";
+// import ListItem from "@material-ui/core/ListItem";
+// import ListItemText from "@material-ui/core/ListItemText";
 
-import { FaBars } from "react-icons/fa";
-import { IoIosCloseCircleOutline } from "react-icons/io";
+// import { FaBars } from "react-icons/fa";
+// import { IoIosCloseCircleOutline } from "react-icons/io";
 
 import GetWindow from "./getWindow";
 
@@ -127,7 +128,7 @@ const Header = ({ container }) => {
   const classes = useStyles();
   const [value, setValue] = useState(0);
   const { width } = GetWindow();
-  const [displayMenu, setDisplay] = useState(false);
+  // const [displayMenu, setDisplay] = useState(false);
   let onMobile = width > 1000 ? false : true;
   let logoWidth = onMobile ? "80%" : "100%";
   let logoContainerDem = onMobile
@@ -138,9 +139,9 @@ const Header = ({ container }) => {
       };
   const history = useNavigate();
 
-  const handleDrawerToggle = () => {
-    setDisplay(!displayMenu);
-  };
+  // const handleDrawerToggle = () => {
+  //   setDisplay(!displayMenu);
+  // };
 
   const handleChange = (e, value) => {
     setValue(value);

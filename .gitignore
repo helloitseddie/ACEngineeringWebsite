@@ -1,4 +1,4 @@
-website/node_modules/
-website/.env
+.env
 .DS_Store
-website/.DS_Store
+.DS_Store
+node_modules

@@ -82,12 +82,6 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: theme.palette.common.blue,
     height: 1,
   },
-  type: {
-    color: theme.palette.common.blue,
-    fontSize: "1.25em",
-    fontFamily: "Arial",
-    fontWeight: 100,
-  },
 }));
 
 const Brand = (brand) => {
@@ -161,21 +155,6 @@ const Home = () => {
     if (brands === undefined || brands.length === 0) refreshBrands();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-
-  const images = [
-    {
-      url: "https://www.vertiv.com/49bb4e/globalassets/images/on-page-image/800x600/cp-ups-na-800x600-266778-vertiv-hpl.jpg",
-    },
-    {
-      url: "https://serescodehumidifiers.com/wp-content/uploads/2018/10/seresco_new-ne-series.jpg",
-    },
-    {
-      url: "https://www.freshaireuv.com/wp-content/uploads/2019/06/Blue-Tube-in-AHU.jpg",
-    },
-    {
-      url: "https://flexairinc.com/wp-content/uploads/2019/04/pressman2-181139911.jpg",
-    },
-  ];
 
   return (
     <>

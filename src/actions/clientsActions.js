@@ -3,7 +3,7 @@ import axios from "axios";
 export const getClients = async () => {
   const query = `
     query {
-  clientGroupsCollection {
+  clientGroupsCollection(order: order_ASC) {
     items {
       category
       clientsCollection(limit:25) {

@@ -58,20 +58,26 @@ const useStyles = makeStyles((theme) => ({
   clientGroup: {
     margin: "auto",
     display: "flex",
-    flexWrap: "wrap",
+    textAlign: "center",
   },
+  clientImage: {
+    height: "10vw", 
+    width: "16vw", 
+    alignSelf: 'center', 
+    border: '1px solid #707070'
+  }
 }));
 
 const Client = (client) => {
   const classes = useStyles();
   return (
     <>
-      <Grid item xs={3} xl={6} style={{ textAlign: "center", margin: "1em" }}>
+      <Grid item xs={3} xl={6}>
         <Box display="flex" flexDirection="column" pb={2}>
           <img
             alt=""
             src={client.client.logo.url}
-            style={{ aspectRatio: 3 / 2, height: undefined, width: "100%" }}
+            className={classes.clientImage}
           />
           <Typography className={classes.type} component="p">
             {client.client.client}
@@ -85,29 +91,37 @@ const Client = (client) => {
 const ClientGroup = (clientGroup) => {
   const classes = useStyles();
   const clients = clientGroup.clientGroup.clientsCollection.items;
-  console.log(clients);
   return (
     <>
-      <Box
+      <Grid container 
+        direction="column"
         className={classes.clientGroup}
-        style={{ marginTop: "3em", marginLeft: "3em" }}
+        style={{ marginTop: "1em", marginLeft: "3em", marginRight: "3em"}}
       >
-        <Typography className={classes.typeSubTitle} component="p">
-          {clientGroup.clientGroup.category}
-        </Typography>
-      </Box>
-      <hr
-        className={classes.divLine}
-        style={{ float: "left", marginLeft: "3em", width: "30%" }}
-      />
-      <Box
+        <Grid item xs={4}>
+          <Box
+            className={classes.clientGroup}
+            style={{ marginLeft: "0.5em"}}
+          >
+            <Typography className={classes.typeSubTitle} component="p">
+              {clientGroup.clientGroup.category}
+            </Typography>
+          </Box>
+        </Grid>
+        <Grid item xs={4}>
+          <hr className={classes.divLine} style={{ float: "left" , width: "40vw"}} />
+        </Grid>
+      </Grid>
+
+      <Grid container 
         className={classes.clientGroup}
-        style={{ marginTop: "3em", marginLeft: "3em" }}
+        style={{ marginLeft: "3em", marginRight: "3em" }}
+        spacing={5}
       >
         {clients.map((client, index) => {
           return <Client key={index} client={client} />;
         })}
-      </Box>
+      </Grid>
     </>
   );
 };
@@ -166,16 +180,26 @@ const Clients = () => {
               flexWrap: "wrap",
             }}
           >
-            <hr className={classes.divLine} style={{ float: "left" }} />
+            <hr className={classes.divLine} style={{ float: "left", marginBottom: "5em" }} />
           </Box>
 
           {showSpinner && <LinearProgress />}
 
-          {clientGroups !== undefined &&
-            clientGroups.length !== 0 &&
-            clientGroups.map((clientGroup, index) => {
-              return <ClientGroup key={index} clientGroup={clientGroup} />;
-            })}
+          <Box
+            style={{
+              justifyContent: "center",
+              alignItems: "center",
+              display: "flex",
+              flexWrap: "wrap",
+            }}
+          >
+            {clientGroups !== undefined &&
+              clientGroups.length !== 0 &&
+              clientGroups.map((clientGroup, index) => {
+                return <ClientGroup key={index} clientGroup={clientGroup} />;
+              })}
+          </Box>
+
           <Box className={classes.servicesBox}></Box>
           <Box className={classes.servicesBox}></Box>
         </Paper>
