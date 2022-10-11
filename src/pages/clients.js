@@ -72,16 +72,17 @@ const useStyles = makeStyles((theme) => ({
 
 const Client = (client) => {
   const classes = useStyles();
+  const { width } = GetWindow();
   return (
     <>
       <Grid item xs={3} xl={6}>
-        <Box display="flex" flexDirection="column" pb={2}>
+        <Box display="flex" flexDirection="column"  style={{width: "16vw"}}>
           <img
             alt=""
             src={client.client.logo.url}
             className={classes.clientImage}
           />
-          <Typography className={classes.type} component="p">
+          <Typography className={classes.type} component="p" style={{fontSize: width < 750 ? "0.25em" : "1em"}}>
             {client.client.client}
           </Typography>
         </Box>
@@ -117,7 +118,7 @@ const ClientGroup = (clientGroup) => {
 
       <Grid container 
         className={classes.clientGroup}
-        style={{ marginLeft: "3em", marginRight: "3em" }}
+        style={{ marginLeft: "3em", marginRight: "3em"}}
         spacing={5}
       >
         {clients.map((client, index) => {
@@ -166,6 +167,7 @@ const Clients = () => {
           elevation={0}
           className={classes.articleContainer}
           style={{ width: articleWidth, marginTop: topMargin }}
+          id="article"
         >
           <Box className={classes.servicesBox} style={{backgroundColor: "#f1f1f1"}}>
             <Typography className={classes.typeTitle} component="p">

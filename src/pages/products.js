@@ -88,7 +88,6 @@ const useStyles = makeStyles((theme) => ({
     margin: "auto",
   },
   productGroup: {
-    width: "85%",
     display: "flex",
     textAlign: "center"
   },
@@ -126,17 +125,16 @@ const Product = (product) => {
               alignItems: "center"}}
           >
             
-            <Grid item>
-              <Button target="_blank" href={product.product.link} style={{width: product.product.logo.width * 0.75, marginLeft: "2em"}}>
+            <Grid item style={{textAlign: "center"}}>
+              <Button target="_blank" href={product.product.link} style={{width: product.product.logo.width * 0.75, marginLeft: width < 1000 ? 0 : "2em"}}>
                 <img
                   alt={product.product.product}
                   src={product.product.logo.url}
-                  className={classes.logo}
                   style={{width: product.product.logo.width * 0.75}}
                 />
               </Button>
             </Grid>
-            <Grid item style={{textAlign: "left"}}>
+            <Grid item style={width < 1000 ? {textAlign: "center"} : {textAlign: "left"}}>
               <Typography className={classes.type} component="p">
                 {product.product.brand} {product.product.product} <br />
                 <a href={product.product.link} className={classes.productLink}>Click Here To Learn More</a>
@@ -151,13 +149,14 @@ const Product = (product) => {
 
 const ProductGroup = (productGroup) => {
   const classes = useStyles();
+  const { width } = GetWindow();
   const products = productGroup.productGroup.productsCollection.items
   return (
     <>
       <Grid container 
         direction="column"
         className={classes.productGroup}
-        style={{ marginLeft: "3em", marginRight: "3em"}}
+        style={width < 1000 ? {alignItems: "center"} : { marginLeft: "3em", marginRight: "3em", width: "85%"}}
         id={productGroup.productGroup.group}
       >
         <Grid item xs={8}>
@@ -169,7 +168,7 @@ const ProductGroup = (productGroup) => {
               {productGroup.productGroup.group}
             </Typography>
           </Box>
-          <hr className={classes.divLine} style={{float: "left" , width: "40vw", marginBottom: "2em", marginTop: "1em"}} />
+          <hr className={classes.divLine} style={{float: "left", marginBottom: "2em", marginTop: "1em", width: width < 1000 ? "100%" : "40vw"}} />
         </Grid>
       </Grid>
 
@@ -250,13 +249,13 @@ const Services = () => {
   }, []);
 
   return (
-    <footer>
+    <>
       <Grid container spacing={2} alignItems="stretch" justifyContent="center">
         <Paper
           elevation={0}
           className={classes.articleContainer}
           style={{ width: articleWidth }}
-
+          id="article"
         >
           <Box className={classes.servicesBox} style={{backgroundColor: "#f1f1f1"}}>
             <Grid item style={{ textAlign: "center", marginTop: "2em", marginBottom: "2em" }}>
@@ -282,7 +281,7 @@ const Services = () => {
         </Paper>
         <Footer />
       </Grid>
-    </footer>
+    </>
   );
 };
 

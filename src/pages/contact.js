@@ -134,6 +134,7 @@ const Contact = () => {
         elevation={0}
         className={classes.articleContainer}
         style={{ width: articleWidth }}
+        id="article"
       >
         <Box className={classes.servicesBox} style={{ marginTop: "5em" }}>
           <Typography className={classes.typeTitle} component="p">
@@ -177,15 +178,15 @@ const Contact = () => {
         >
           <Grid
             item
-            xs={6}
-            style={{ textAlign: "center", margin: "auto", marginleft: "2em" }}
+            xs={width > 800 ? 6 : 8}
+            style={{ textAlign: "center", margin: "auto", marginleft: "2em"}}
           >
             <Typography className={classes.type} component="p">
               J.R. Diaz
             </Typography>
             <Typography
               className={classes.type}
-              style={{ textDecoration: "none", margin: "auto" }}
+              style={{ textDecoration: "none", margin: "auto"}}
               component="a"
               href="mailto:jrdiaz@acengineering.com"
             >

@@ -9,7 +9,7 @@ import GetWindow from "./getWindow";
 
 const useStyles = makeStyles((theme) => ({
   bar: {
-    backgroundColor: "#333",
+    backgroundColor: "#707070",
     marginTop: "auto",
     position: "flex",
   },
@@ -26,7 +26,7 @@ const useStyles = makeStyles((theme) => ({
 
 export default function Footer(props) {
   const classes = useStyles();
-  const { height } = GetWindow();
+  const { width, height } = GetWindow();
   const divRef = useRef();
   const [offset, setOffset] = useState(height - 100);
   const [scrollOffset, setScrollOffset] = useState(0);
@@ -48,7 +48,7 @@ export default function Footer(props) {
   }, [divRef, height, scrollOffset]);
 
   return (
-    <React.Fragment>
+    <>
       <div ref={divRef}></div>
       <Grid
         container
@@ -59,25 +59,24 @@ export default function Footer(props) {
         className={classes.bar}
         style={{ height: `calc(100vh - ${offset}px)` }}
       >
-        <Grid item xs={6} style={{ textAlign: "right", marginTop: "0.5em" }}>
-          <Typography className={classes.text} component="p">
+        <Grid item xs={5} style={{ textAlign: "center"}}>
+          <Typography className={classes.text} component={Link} 
+            to="/" style={{fontSize: width < 500 ? "0.5em" : "1em", textDecoration: "none", cursor: "default"}}>
             © Copyright - AC Engineering, Inc. All Rights Reserved
           </Typography>
         </Grid>
         <Grid
           item
-          xs={6}
+          xs={5}
           style={{
-            textAlign: "left",
-            marginTop: "0.5em",
-            marginBottom: "0.5em",
+            textAlign: "center"
           }}
         >
           <Typography
             className={classes.text}
             component={Link}
             to="/"
-            style={{ textDecoration: "none" }}
+            style={{ textDecoration: "none", fontSize: width < 500 ? "0.5em" : "1em" }}
           >
             Home |{" "}
           </Typography>
@@ -85,7 +84,7 @@ export default function Footer(props) {
             className={classes.text}
             component={Link}
             to="/about"
-            style={{ textDecoration: "none" }}
+            style={{ textDecoration: "none", fontSize: width < 500 ? "0.5em" : "1em" }}
           >
             About Us |{" "}
           </Typography>
@@ -93,7 +92,7 @@ export default function Footer(props) {
             className={classes.text}
             component={Link}
             to="/products"
-            style={{ textDecoration: "none" }}
+            style={{ textDecoration: "none", fontSize: width < 500 ? "0.5em" : "1em" }}
           >
             Products |{" "}
           </Typography>
@@ -101,7 +100,7 @@ export default function Footer(props) {
             className={classes.text}
             component={Link}
             to="/clients"
-            style={{ textDecoration: "none" }}
+            style={{ textDecoration: "none", fontSize: width < 500 ? "0.5em" : "1em" }}
           >
             Clients |{" "}
           </Typography>
@@ -109,13 +108,13 @@ export default function Footer(props) {
             className={classes.text}
             component={Link}
             to="/contact"
-            style={{ textDecoration: "none" }}
+            style={{ textDecoration: "none", fontSize: width < 500 ? "0.5em" : "1em" }}
           >
             Contact Us
           </Typography>
         </Grid>
         <Box sx={{ display: "flex" }} className={classes.bar}></Box>
       </Grid>
-    </React.Fragment>
+    </>
   );
 }

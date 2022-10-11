@@ -72,6 +72,7 @@ const AboutUs = () => {
           elevation={0}
           className={classes.articleContainer}
           style={{ width: articleWidth }}
+          id="article"
         >
           <Box style={{ marginBottom: "6em" }}></Box>
           <Box className={classes.aboutUsBox} style={{backgroundColor: "#f1f1f1"}}>

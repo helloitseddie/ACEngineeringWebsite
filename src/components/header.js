@@ -168,13 +168,10 @@ const Header = ({ container }) => {
           setValue(3);
         }
         break;
-      case "/contact":
+      default:
         if (value !== 4) {
           setValue(4);
         }
-        break;
-      default:
-        setValue(5);
         break;
     }
   }, [value, history]);

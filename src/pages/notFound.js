@@ -30,7 +30,7 @@ const useStyles = makeStyles((theme) => ({
     flexWrap: "wrap",
   },
   typeTitle: {
-    color: theme.palette.common.gray,
+    color: theme.palette.common.blue,
     fontSize: "3em",
     fontFamily: "Arial",
     fontWeight: 500,
@@ -64,35 +64,31 @@ const useStyles = makeStyles((theme) => ({
 const NotFound = () => {
   const classes = useStyles();
   const { width } = GetWindow();
-  let articleWidth = width > 800 ? "75%" : "100%";
+  let articleWidth = width > 800 ? "75%" : "100vw";
 
   useEffect(() => {
     document.body.style = `background-image: url("${background}")`;
   }, []);
 
   return (
-    <footer>
+    <>
       <Grid container spacing={2} alignItems="stretch" justifyContent="center">
         <Paper
           elevation={0}
           className={classes.articleContainer}
           style={{ width: articleWidth }}
+          id="article"
         >
-          <Box className={classes.servicesBox}>
-            <hr
-              className={classes.divLineTitle}
-              style={{ float: "left", marginTop: "2em" }}
-            />
-            <Grid item style={{ textAlign: "center" }}>
+          <Box className={classes.servicesBox} style={{backgroundColor: "#f1f1f1"}}>
+            <Grid item style={{ textAlign: "center", marginTop: "2em", marginBottom: "2em" }}>
               <Typography className={classes.typeTitle} component="p">
                 Page Not Found
               </Typography>
             </Grid>
-            <hr className={classes.divLineTitle} style={{ float: "left" }} />
           </Box>
           <Box
             className={classes.servicesBox}
-            style={{ textAlign: "center", alignItems: "center" }}
+            style={{ textAlign: "center", alignItems: "center"}}
             display="flex"
             flexDirection={"column"}
           >
@@ -116,9 +112,9 @@ const NotFound = () => {
               <Typography
                 className={classes.type}
                 component={Link}
-                to="/services"
+                to="/products"
               >
-                Services
+                Products
               </Typography>
               <br />
               <Typography
@@ -141,7 +137,7 @@ const NotFound = () => {
         </Paper>
         <Footer />
       </Grid>
-    </footer>
+    </>
   );
 };
 

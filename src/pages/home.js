@@ -114,6 +114,7 @@ const Home = () => {
           elevation={0}
           className={classes.articleContainer}
           style={{ width: articleWidth }}
+          id="article"
         >
           <Box style={{ marginBottom: "5vh" }}></Box>
           {showSpinner && <LinearProgress />}
