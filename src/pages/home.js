@@ -3,19 +3,15 @@ import { makeStyles } from "@material-ui/styles";
 import Paper from "@material-ui/core/Paper";
 import Grid from "@material-ui/core/Grid";
 import Box from "@material-ui/core/Box";
-import Typography from "@material-ui/core/Typography";
-import Button from "@material-ui/core/Button";
 import LinearProgress from "@material-ui/core/LinearProgress";
 
 import Footer from "../components/footer";
 import GetWindow from "../components/getWindow";
 
-import SimpleImageSlider from "react-simple-image-slider";
-// import styles from "../components/imageRevolver.css";
+import GalleryCarousel from "../components/GalleryCarousel";
 
 import background from "../assets/bg.png";
 
-import { getBrands } from "../actions/brandActions";
 import { getImages } from "../actions/homeActions";
 
 const useStyles = makeStyles((theme) => ({
@@ -84,66 +80,21 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const Brand = (brand) => {
-  const classes = useStyles();
-  return (
-    <>
-      <Box className={classes.brands} style={{ marginTop: "3em" }}>
-        <Grid item xs={5} style={{ textAlign: "center" }}>
-          <Button target="_blank" href={brand.brand.url}>
-            <img
-              alt={brand.brand.brand}
-              src={brand.brand.logo.url}
-              className={classes.logo}
-            />
-          </Button>
-        </Grid>
-        <Grid item xs={5}>
-          <Typography className={classes.brandName} component="p">
-            {brand.brand.brand.toUpperCase()}
-          </Typography>
-          <hr className={classes.divLine} style={{ float: "left" }} />
-          <br />
-          <br />
-          {brand.brand.description.map((attr, index) => {
-            return (
-              <Typography
-                key={index}
-                className={classes.brandDesc}
-                component="p"
-              >
-                {" "}
-                - {attr}
-              </Typography>
-            );
-          })}
-        </Grid>
-      </Box>
-      <Box style={{ marginBottom: "2em" }}></Box>
-    </>
-  );
-};
-
 const Home = () => {
   const classes = useStyles();
   const { width } = GetWindow();
   let articleWidth = width > 1000 ? "75%" : "100%";
   const [showSpinner, setShowSpinner] = useState(false);
-  const [brands, setBrands] = useState([]);
   const [homeImages, setHomeImages] = useState([]);
 
   useEffect(() => {
     document.body.style = `background-image: url("${background}")`;
   }, []);
 
-  console.log(articleWidth);
-
   useEffect(() => {
     const refreshBrands = async () => {
       try {
         setShowSpinner(true);
-        let response = await getBrands();
-        setBrands(response);
         let revolverImages = await getImages();
         setHomeImages(revolverImages);
         setShowSpinner(false);
@@ -152,7 +103,7 @@ const Home = () => {
         setShowSpinner(false);
       }
     };
-    if (brands === undefined || brands.length === 0) refreshBrands();
+    if (homeImages === undefined || homeImages.length === 0) refreshBrands();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -165,18 +116,8 @@ const Home = () => {
           style={{ width: articleWidth }}
         >
           <Box style={{ marginBottom: "5vh" }}></Box>
-          {homeImages !== undefined && homeImages.length !== 0 && (
-            <SimpleImageSlider
-              width={articleWidth}
-              height={500}
-              images={homeImages}
-              showBullets={false}
-              showNavs={true}
-              autoPlay={true}
-              autoPlayDelay={5}
-              className={classes.imageRevolver}
-            />
-          )}
+          {showSpinner && <LinearProgress />}
+          {homeImages !== undefined && homeImages.length !== 0 && <GalleryCarousel images={homeImages} />}
           <div>
             <p
               className={classes.brandName}
@@ -191,16 +132,7 @@ const Home = () => {
           </div>
           <hr className={classes.divLine} style={{ marginTop: "1.5em" }} />
           <Box style={{ marginBottom: "8em" }}></Box>
-          {brands !== undefined &&
-            brands.length !== 0 &&
-            brands.map((brand, index) => {
-              return <Brand key={index} brand={brand} />;
-            })}
-          <Box style={{ marginBottom: "8em" }}></Box>
-          {showSpinner && <LinearProgress />}
-
-          <Box style={{ marginBottom: "2em" }}></Box>
-          <hr className={classes.divLine} style={{ marginTop: "1.5em" }} />
+          
           <Box style={{ marginBottom: "2em" }}></Box>
 
           <Box style={{ marginBottom: "1em" }}></Box>

@@ -13,7 +13,7 @@ import GetWindow from "../components/getWindow";
 
 import background from "../assets/bg.png";
 
-import { getBrands } from "../actions/brandActions";
+import { getProducts } from "../actions/productActions";
 
 const useStyles = makeStyles((theme) => ({
   articleContainer: {
@@ -37,7 +37,7 @@ const useStyles = makeStyles((theme) => ({
     flexWrap: "wrap",
   },
   typeTitle: {
-    color: theme.palette.common.gray,
+    color: theme.palette.common.blue,
     fontSize: "3em",
     fontFamily: "Arial",
     fontWeight: 500,
@@ -64,7 +64,7 @@ const useStyles = makeStyles((theme) => ({
     width: "75%",
     color: theme.palette.common.blue,
     backgroundColor: theme.palette.common.blue,
-    height: 1,
+    height: "1px",
   },
   brands: {
     margin: "auto",
@@ -87,54 +87,147 @@ const useStyles = makeStyles((theme) => ({
     fontWeight: 0,
     margin: "auto",
   },
+  productGroup: {
+    width: "85%",
+    display: "flex",
+    textAlign: "center"
+  },
+  productContainer: {
+    border: "0.5px solid", 
+    borderColor: theme.palette.common.gray,
+    width: "70vw", 
+    marginLeft: "2vw"
+  },
+  productLink: {
+    color: theme.palette.common.blue,
+    fontSize: "0.75em",
+    textDecoration: "none",
+    "&:hover": {
+      textDecoration: "underline"
+    }
+  }
 }));
 
-const Brand = (brand) => {
+const Product = (product) => {
   const classes = useStyles();
+  const { width } = GetWindow();
+
   return (
     <>
-      <Box className={classes.brands} style={{ marginTop: "3em" }}>
-        <Grid item xs={5} style={{ textAlign: "center" }}>
-          <Button target="_blank" href={brand.brand.url}>
-            <img
-              alt={brand.brand.brand}
-              src={brand.brand.logo.url}
-              className={classes.logo}
-            />
-          </Button>
-        </Grid>
-        <Grid item xs={5}>
-          <Typography className={classes.brandName} component="p">
-            {brand.brand.brand.toUpperCase()}
-          </Typography>
-          <hr className={classes.divLine} style={{ float: "left" }} />
-          <br />
-          <br />
-          {brand.brand.description.map((attr, index) => {
-            return (
-              <Typography
-                key={index}
-                className={classes.brandDesc}
-                component="p"
-              >
-                {" "}
-                - {attr}
+      <Grid item>
+        <Box display="flex" flexDirection="column" pt={0.5}
+          className={classes.productContainer}
+          >
+          <Grid container 
+            direction= {width < 1000 ? "column" : "row"}
+            spacing={10}
+            style={{
+              alignSelf: "center",
+              alignItems: "center"}}
+          >
+            
+            <Grid item>
+              <Button target="_blank" href={product.product.link} style={{width: product.product.logo.width * 0.75, marginLeft: "2em"}}>
+                <img
+                  alt={product.product.product}
+                  src={product.product.logo.url}
+                  className={classes.logo}
+                  style={{width: product.product.logo.width * 0.75}}
+                />
+              </Button>
+            </Grid>
+            <Grid item style={{textAlign: "left"}}>
+              <Typography className={classes.type} component="p">
+                {product.product.brand} {product.product.product} <br />
+                <a href={product.product.link} className={classes.productLink}>Click Here To Learn More</a>
               </Typography>
-            );
-          })}
-        </Grid>
-      </Box>
-      <Box style={{ marginBottom: "2em" }}></Box>
+            </Grid>
+          </Grid>
+        </Box>
+      </Grid>
     </>
   );
 };
+
+const ProductGroup = (productGroup) => {
+  const classes = useStyles();
+  const products = productGroup.productGroup.productsCollection.items
+  return (
+    <>
+      <Grid container 
+        direction="column"
+        className={classes.productGroup}
+        style={{ marginLeft: "3em", marginRight: "3em"}}
+        id={productGroup.productGroup.group}
+      >
+        <Grid item xs={8}>
+          <Box
+            className={classes.productGroup}
+            style={{ marginLeft: "0.5em"}}
+          >
+            <Typography className={classes.typeSubTitle} component="p">
+              {productGroup.productGroup.group}
+            </Typography>
+          </Box>
+          <hr className={classes.divLine} style={{float: "left" , width: "40vw", marginBottom: "2em", marginTop: "1em"}} />
+        </Grid>
+      </Grid>
+
+      <Grid container 
+        direction="column"
+        className={classes.productGroup}
+        spacing={1}
+        style={{alignItems: "center", marginBottom: "5em"}}
+      >
+        {products.map((product, index) => {
+          return <Product key={index} product={product} />;
+        })}
+      </Grid>
+    </>
+  );
+};
+
+const ProductJump = (groups) => {
+  const classes = useStyles();
+  const { height } = GetWindow();
+
+  const scrollToTop = (offset) => {
+    console.log(offset)
+    window.scrollTo({
+      top: offset - (height / 3.5),
+      behavior: "smooth",
+    });
+  };
+
+  return (
+    <Grid container 
+      direction="row"
+      style={{justifyContent: "center"}}
+      spacing={5}
+    >
+      {groups.groups.map((group, index) => {
+          return (
+            <>
+              {document.getElementById(group.group) !== null && <Grid item key={index}>
+                <button key={index} onClick={() => scrollToTop(document.getElementById(group.group).getBoundingClientRect().y)} style={{cursor: "pointer"}}>
+                  <Typography key={index} className={classes.type} component="p">
+                    {group.group}
+                  </Typography>
+                </button>
+              </Grid>}
+            </>
+          );
+      })}
+    </Grid>
+  );
+}
 
 const Services = () => {
   const classes = useStyles();
   const { width } = GetWindow();
   let articleWidth = width > 1000 ? "75%" : "100%";
   const [showSpinner, setShowSpinner] = useState(false);
-  const [brands, setBrands] = useState([]);
+  const [products, setProducts] = useState([]);
 
   useEffect(() => {
     document.body.style = `background-image: url("${background}")`;
@@ -144,15 +237,15 @@ const Services = () => {
     const refreshBrands = async () => {
       try {
         setShowSpinner(true);
-        let response = await getBrands();
-        setBrands(response);
+        let productsResponse = await getProducts();
+        setProducts(productsResponse);
         setShowSpinner(false);
       } catch (error) {
         console.error(error);
         setShowSpinner(false);
       }
     };
-    if (brands === undefined || brands.length === 0) refreshBrands();
+    if (products === undefined || products.length === 0) refreshBrands();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -163,140 +256,26 @@ const Services = () => {
           elevation={0}
           className={classes.articleContainer}
           style={{ width: articleWidth }}
+
         >
-          <Box className={classes.servicesBox}>
-            <Grid item style={{ textAlign: "center", marginTop: "2em" }}>
-              <Typography className={classes.typeTitle} component="p">
-                Services We Offer
-              </Typography>
-            </Grid>
-            <hr
-              className={classes.divLineTitle}
-              style={{ float: "left", marginTop: "1em" }}
-            />
-          </Box>
-          <Box
-            className={classes.servicesBox}
-            style={{ textAlign: "center", alignItems: "center" }}
-            display="flex"
-            flexDirection={width > 850 ? "row" : "column"}
-          >
-            <Grid item xs={5} style={{ textAlign: "center" }}>
-              <Typography className={classes.typeSubTitle} component="p">
-                Power
-              </Typography>
-              <hr className={classes.divLine} style={{ float: "center" }} />
-              <br />
-              <Typography className={classes.type} component="p">
-                {" "}
-                - AC Power
-              </Typography>
-              <Typography className={classes.type} component="p">
-                {" "}
-                - Connectivity
-              </Typography>
-              <Typography className={classes.type} component="p">
-                {" "}
-                - DC Power
-              </Typography>
-              <Typography className={classes.type} component="p">
-                {" "}
-                - Power Switching & Controls
-              </Typography>
-              <Typography className={classes.type} component="p">
-                {" "}
-                - Precision Cooling
-              </Typography>
-              <Typography className={classes.type} component="p">
-                {" "}
-                - Surge Protection
-              </Typography>
-            </Grid>
-            <Box style={{ marginBottom: "4em" }}></Box>
-            <Grid item xs={5} style={{ textAlign: "center" }}>
-              <Typography className={classes.typeSubTitle} component="p">
-                Dehumidification and Humidification
-              </Typography>
-              <hr className={classes.divLine} style={{ float: "center" }} />
-              <br />
-              <Typography className={classes.type} component="p">
-                {" "}
-                - Specialized natatorium dehumidification solutions
-              </Typography>
-              <Typography className={classes.type} component="p">
-                {" "}
-                - Specialized healthcare application humidification solutions
-              </Typography>
-              <Typography className={classes.type} component="p">
-                {" "}
-                - Refrigeration-based dehumidifiers
-              </Typography>
-              <Typography className={classes.type} component="p">
-                {" "}
-                - Dedicated out-door infrastructure
-              </Typography>
-              <Typography className={classes.type} component="p">
-                {" "}
-                - Infrastructure Management & Monitoring
-              </Typography>
-              <Typography className={classes.type} component="p">
-                {" "}
-                - Racks & Integrated Cabinets
-              </Typography>
-            </Grid>
-          </Box>
-          <Box
-            className={classes.servicesBox}
-            style={{ textAlign: "center", alignItems: "center" }}
-            display="flex"
-            flexDirection={width > 850 ? "row" : "column"}
-          >
-            <Grid item xs={5} style={{ textAlign: "center" }}>
-              <Typography className={classes.typeSubTitle} component="p">
-                Indoor Air Quality
-              </Typography>
-              <hr className={classes.divLine} style={{ float: "center" }} />
-              <br />
-              <Typography className={classes.type} component="p">
-                {" "}
-                - UV Lighting Integration and Technology
-              </Typography>
-            </Grid>
-            <Box style={{ marginBottom: "4em" }}></Box>
-            <Grid item xs={5} style={{ textAlign: "center" }}>
-              <Typography className={classes.typeSubTitle} component="p">
-                Prefabricated Custom Units
-              </Typography>
-              <hr className={classes.divLine} style={{ float: "center" }} />
-              <br />
-              <Typography className={classes.type} component="p">
-                {" "}
-                - Custom modular mechanical and electrical
-              </Typography>
-            </Grid>
-          </Box>
-          <Box className={classes.servicesBox}>
-            <Grid item style={{ textAlign: "center", marginTop: "2em" }}>
+          <Box className={classes.servicesBox} style={{backgroundColor: "#f1f1f1"}}>
+            <Grid item style={{ textAlign: "center", marginTop: "2em", marginBottom: "2em" }}>
               <Typography className={classes.typeTitle} component="p">
                 Products We Offer
               </Typography>
             </Grid>
-            <hr
-              className={classes.divLineTitle}
-              style={{ float: "left", marginTop: "1em" }}
-            />
           </Box>
-          <Box style={{ marginBottom: "8em" }}></Box>
-          {brands !== undefined &&
-            brands.length !== 0 &&
-            brands.map((brand, index) => {
-              return <Brand key={index} brand={brand} />;
-            })}
-          <Box style={{ marginBottom: "8em" }}></Box>
+          <Typography className={classes.typeSubTitle} component="p" style={{textAlign: "center", marginBottom: "1em"}}>
+            Jump To: 
+          </Typography>
+          { products !== undefined && products.length !== 0 && <ProductJump groups={products} /> }
           {showSpinner && <LinearProgress />}
-
-          <Box style={{ marginBottom: "2em" }}></Box>
-          <hr className={classes.divLine} style={{ marginTop: "1.5em" }} />
+          <Box style={{ marginBottom: "5em" }}></Box>
+          {products !== undefined &&
+            products.length !== 0 &&
+            products.map((product, index) => {
+              return <ProductGroup key={index} productGroup={product} />;
+            })}
           <Box style={{ marginBottom: "2em" }}></Box>
 
           <Box style={{ marginBottom: "1em" }}></Box>

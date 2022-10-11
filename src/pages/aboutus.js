@@ -1,19 +1,15 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 
 import { makeStyles } from "@material-ui/styles";
 import Paper from "@material-ui/core/Paper";
 import Grid from "@material-ui/core/Grid";
 import Box from "@material-ui/core/Box";
 import Typography from "@material-ui/core/Typography";
-import Button from "@material-ui/core/Button";
-import LinearProgress from "@material-ui/core/LinearProgress";
 
 import Footer from "../components/footer";
 import GetWindow from "../components/getWindow";
 
 import background from "../assets/bg.png";
-
-import { getBrands } from "../actions/brandActions";
 
 const useStyles = makeStyles((theme) => ({
   articleContainer: {
@@ -39,11 +35,12 @@ const useStyles = makeStyles((theme) => ({
     fontWeight: 100,
   },
   typeTitle: {
-    color: theme.palette.common.gray,
+    color: theme.palette.common.blue,
     fontSize: "3em",
     fontFamily: "Arial",
     fontWeight: 500,
     marginTop: "0.5em",
+    marginBottom: "0.5em"
   },
   logo: {
     float: "right",
@@ -59,54 +56,13 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const Brand = (brand) => {
-  const classes = useStyles();
-
-  return (
-    <Box className={classes.aboutUsBox}>
-      <Grid item xs={5} style={{ textAlign: "center" }}>
-        <Button target="_blank" href={brand.brand.url}>
-          <img
-            alt={brand.brand.brand}
-            src={brand.brand.logo.url}
-            className={classes.logo}
-          />
-        </Button>
-      </Grid>
-      <Grid item xs={5}>
-        <Typography className={classes.brandName} component="p">
-          {brand.brand.aboutUs.json.content[0].content[0].value}
-        </Typography>
-      </Grid>
-    </Box>
-  );
-};
-
 const AboutUs = () => {
   const classes = useStyles();
   const { width } = GetWindow();
   let articleWidth = width > 1000 ? "75%" : "100%";
-  const [showSpinner, setShowSpinner] = useState(false);
-  const [brands, setBrands] = useState([]);
 
   useEffect(() => {
     document.body.style = `background-image: url("${background}")`;
-  }, []);
-
-  useEffect(() => {
-    const refreshBrands = async () => {
-      try {
-        setShowSpinner(true);
-        let response = await getBrands();
-        setBrands(response);
-        setShowSpinner(false);
-      } catch (error) {
-        console.error(error);
-        setShowSpinner(false);
-      }
-    };
-    if (brands === undefined || brands.length === 0) refreshBrands();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
@@ -118,22 +74,10 @@ const AboutUs = () => {
           style={{ width: articleWidth }}
         >
           <Box style={{ marginBottom: "6em" }}></Box>
-          <Box className={classes.aboutUsBox}>
+          <Box className={classes.aboutUsBox} style={{backgroundColor: "#f1f1f1"}}>
             <Typography className={classes.typeTitle} component="p">
               About Us
             </Typography>
-            <br />
-          </Box>
-          <Box
-            style={{
-              justifyContent: "center",
-              alignItems: "center",
-              display: "flex",
-              flexWrap: "wrap",
-              margin: 0,
-            }}
-          >
-            <hr className={classes.divLine} style={{ float: "left" }} />
           </Box>
           <Box
             className={classes.aboutUsBox}
@@ -176,13 +120,6 @@ const AboutUs = () => {
               </Typography>
             </Grid>
           </Box>
-          <Box style={{ marginBottom: "6em" }}></Box>
-          {showSpinner && <LinearProgress />}
-          {brands !== undefined &&
-            brands.length !== 0 &&
-            brands.map((brand, index) => {
-              return <Brand key={index} brand={brand} />;
-            })}
           <Box style={{ marginTop: "7em" }}></Box>
         </Paper>
         <Footer />

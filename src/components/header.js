@@ -128,7 +128,6 @@ const Header = ({ container }) => {
   const classes = useStyles();
   const [value, setValue] = useState(0);
   const { width } = GetWindow();
-  // const [displayMenu, setDisplay] = useState(false);
   let onMobile = width > 1000 ? false : true;
   let logoWidth = onMobile ? "80%" : "100%";
   let logoContainerDem = onMobile

@@ -31,10 +31,12 @@ const useStyles = makeStyles((theme) => ({
     flexWrap: "wrap",
   },
   typeTitle: {
-    color: theme.palette.common.gray,
-    fontSize: "2em",
+    color: theme.palette.common.blue,
+    fontSize: "3em",
     fontFamily: "Arial",
     fontWeight: 500,
+    marginTop: "0.5em",
+    marginBottom: "0.5em",
   },
   typeSubTitle: {
     color: theme.palette.common.gray,
@@ -165,22 +167,10 @@ const Clients = () => {
           className={classes.articleContainer}
           style={{ width: articleWidth, marginTop: topMargin }}
         >
-          <Box className={classes.servicesBox}>
+          <Box className={classes.servicesBox} style={{backgroundColor: "#f1f1f1"}}>
             <Typography className={classes.typeTitle} component="p">
               Clients
             </Typography>
-            <br />
-          </Box>
-
-          <Box
-            style={{
-              justifyContent: "center",
-              alignItems: "center",
-              display: "flex",
-              flexWrap: "wrap",
-            }}
-          >
-            <hr className={classes.divLine} style={{ float: "left", marginBottom: "5em" }} />
           </Box>
 
           {showSpinner && <LinearProgress />}
