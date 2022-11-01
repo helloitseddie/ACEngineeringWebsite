@@ -66,7 +66,7 @@ const useStyles = makeStyles((theme) => ({
     color: theme.palette.common.white,
     minWidth: "1vw",
     marginRight: "2vw",
-    fontFamily: "acFont"
+    fontFamily: "acFont",
   },
   menu: {
     backgroundColor: theme.palette.common.blue,
@@ -223,35 +223,35 @@ const Header = ({ container }) => {
             >
               <Tab
                 className={classes.newTab}
-                style={{ fontSize: onMobile ? "2vw" : "1.25vw" }}
+                style={{ fontSize: onMobile ? "2vw" : "1vw" }}
                 component={Link}
                 to="/"
                 label="HOME"
               />
               <Tab
                 className={classes.newTab}
-                style={{ fontSize: onMobile ? "2vw" : "1.25vw" }}
+                style={{ fontSize: onMobile ? "2vw" : "1vw" }}
                 component={Link}
                 to="/about"
                 label="ABOUT US"
               />
               <Tab
                 className={classes.newTab}
-                style={{ fontSize: onMobile ? "2vw" : "1.25vw" }}
+                style={{ fontSize: onMobile ? "2vw" : "1vw" }}
                 component={Link}
                 to="/products"
                 label="PRODUCTS"
               />
               <Tab
                 className={classes.newTab}
-                style={{ fontSize: onMobile ? "2vw" : "1.25vw" }}
+                style={{ fontSize: onMobile ? "2vw" : "1vw" }}
                 component={Link}
                 to="/clients"
                 label="CLIENTS"
               />
               <Tab
                 className={classes.newTab}
-                style={{ fontSize: onMobile ? "2vw" : "1.25vw" }}
+                style={{ fontSize: onMobile ? "2vw" : "1vw" }}
                 component={Link}
                 to="/contact"
                 label="CONTACT US"

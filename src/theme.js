@@ -20,7 +20,6 @@ export default createTheme({
     tab: {
       fontFamily: "Arial",
       textTransform: "none",
-      fontWeight: 700,
       fontSize: "1em",
     },
   },

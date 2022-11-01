@@ -13,7 +13,7 @@ import GetWindow from "../components/getWindow";
 
 import background from "../assets/bg.png";
 
-import { getProducts } from "../actions/productActions";
+import { getBrands } from "../actions/brandActions";
 
 import "../App.css";
 import "../assets/acFont.otf";
@@ -92,55 +92,86 @@ const useStyles = makeStyles((theme) => ({
   },
   productGroup: {
     display: "flex",
-    textAlign: "center"
+    textAlign: "center",
   },
   productContainer: {
-    border: "0.5px solid", 
+    border: "0.5px solid",
     borderColor: theme.palette.common.gray,
-    width: "70vw", 
-    marginLeft: "2vw"
+    width: "70vw",
   },
   productLink: {
     color: theme.palette.common.blue,
-    fontSize: "0.75em",
+    fontSize: "0.9em",
     textDecoration: "none",
     "&:hover": {
-      textDecoration: "underline"
-    }
-  }
+      textDecoration: "underline",
+    },
+  },
 }));
 
-const Product = (product) => {
+const Product = (brand) => {
   const classes = useStyles();
   const { width } = GetWindow();
+
+  console.log(brand.brand.logo.height);
 
   return (
     <>
       <Grid item>
-        <Box display="flex" flexDirection="column" pt={0.5}
+        <Box
           className={classes.productContainer}
-          >
-          <Grid container 
-            direction= {width < 1000 ? "column" : "row"}
-            spacing={10}
+          style={{
+            height: width < 1000 ? 400 : 200,
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
+          <Grid
+            container={"product"}
+            direction={width < 1000 ? "column" : "row"}
+            spacing={5}
+            alignItems="center"
+            justifyContent="center"
             style={{
-              alignSelf: "center",
-              alignItems: "center"}}
+              width: "70vw",
+            }}
           >
-            
-            <Grid item style={{textAlign: "center"}}>
-              <Button target="_blank" href={product.product.link} style={{width: product.product.logo.width * 0.75, marginLeft: width < 1000 ? 0 : "2em"}}>
+            <Grid item={"product"} xs={width < 1000 ? 12 : 3}>
+              <Button
+                target="_blank"
+                href={brand.brand.url}
+                style={{
+                  width: brand.brand.logo.width * 0.75,
+                }}
+              >
                 <img
-                  alt={product.product.product}
-                  src={product.product.logo.url}
-                  style={{width: product.product.logo.width * 0.75}}
+                  alt={brand.brand.brand}
+                  src={brand.brand.logo.url}
+                  style={{ width: brand.brand.logo.width * 0.75 }}
                 />
               </Button>
             </Grid>
-            <Grid item style={width < 1000 ? {textAlign: "center"} : {textAlign: "left"}}>
+            <Grid
+              item={"product"}
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                justifyContent: "center",
+                textAlign: width < 1000 ? "center" : "left",
+              }}
+              xs={9}
+            >
+              <Typography className={classes.typeSubTitle} component="p">
+                {brand.brand.brand}
+              </Typography>
               <Typography className={classes.type} component="p">
-                {product.product.brand} {product.product.product} <br />
-                <a href={product.product.link} className={classes.productLink}>Click Here To Learn More</a>
+                {brand.brand.description}
+              </Typography>
+              <Typography className={classes.type} component="p">
+                <a href={brand.brand.url} className={classes.productLink}>
+                  Click Here To Learn More
+                </a>
               </Typography>
             </Grid>
           </Grid>
@@ -150,86 +181,12 @@ const Product = (product) => {
   );
 };
 
-const ProductGroup = (productGroup) => {
-  const classes = useStyles();
-  const { width } = GetWindow();
-  const products = productGroup.productGroup.productsCollection.items
-  return (
-    <>
-      <Grid container 
-        direction="column"
-        className={classes.productGroup}
-        style={width < 1000 ? {alignItems: "center"} : { marginLeft: "3em", marginRight: "3em", width: "85%"}}
-        id={productGroup.productGroup.group}
-      >
-        <Grid item xs={8}>
-          <Box
-            className={classes.productGroup}
-            style={{ marginLeft: "0.5em"}}
-          >
-            <Typography className={classes.typeSubTitle} component="p">
-              {productGroup.productGroup.group}
-            </Typography>
-          </Box>
-          <hr className={classes.divLine} style={{float: "left", marginBottom: "2em", marginTop: "1em", width: width < 1000 ? "100%" : "40vw"}} />
-        </Grid>
-      </Grid>
-
-      <Grid container 
-        direction="column"
-        className={classes.productGroup}
-        spacing={1}
-        style={{alignItems: "center", marginBottom: "5em"}}
-      >
-        {products.map((product, index) => {
-          return <Product key={index} product={product} />;
-        })}
-      </Grid>
-    </>
-  );
-};
-
-const ProductJump = (groups) => {
-  const classes = useStyles();
-  const { height } = GetWindow();
-
-  const scrollToTop = (offset) => {
-    console.log(offset)
-    window.scrollTo({
-      top: offset - (height / 3.5),
-      behavior: "smooth",
-    });
-  };
-
-  return (
-    <Grid container 
-      direction="row"
-      style={{justifyContent: "center"}}
-      spacing={5}
-    >
-      {groups.groups.map((group, index) => {
-          return (
-            <>
-              {document.getElementById(group.group) !== null && <Grid item key={index}>
-                <button key={index} onClick={() => scrollToTop(document.getElementById(group.group).getBoundingClientRect().y)} style={{cursor: "pointer"}}>
-                  <Typography key={index} className={classes.type} component="p">
-                    {group.group}
-                  </Typography>
-                </button>
-              </Grid>}
-            </>
-          );
-      })}
-    </Grid>
-  );
-}
-
-const Services = () => {
+const Products = () => {
   const classes = useStyles();
   const { width } = GetWindow();
   let articleWidth = width > 1000 ? "75%" : "100%";
   const [showSpinner, setShowSpinner] = useState(false);
-  const [products, setProducts] = useState([]);
+  const [brands, setBrands] = useState([]);
 
   useEffect(() => {
     document.body.style = `background-image: url("${background}")`;
@@ -239,15 +196,15 @@ const Services = () => {
     const refreshBrands = async () => {
       try {
         setShowSpinner(true);
-        let productsResponse = await getProducts();
-        setProducts(productsResponse);
+        let brandResponse = await getBrands();
+        setBrands(brandResponse);
         setShowSpinner(false);
       } catch (error) {
         console.error(error);
         setShowSpinner(false);
       }
     };
-    if (products === undefined || products.length === 0) refreshBrands();
+    if (brands === undefined || brands.length === 0) refreshBrands();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -260,24 +217,41 @@ const Services = () => {
           style={{ width: articleWidth }}
           id="article"
         >
-          <Box className={classes.servicesBox} style={{backgroundColor: "#f1f1f1"}}>
-            <Grid item style={{ textAlign: "center", marginTop: "2em", marginBottom: "2em" }}>
+          <Box
+            className={classes.servicesBox}
+            style={{ backgroundColor: "#f1f1f1" }}
+          >
+            <Grid
+              item
+              style={{
+                textAlign: "center",
+                marginTop: "2em",
+                marginBottom: "2em",
+              }}
+            >
               <Typography className={classes.typeTitle} component="p">
-                Products We Offer
+                Products
               </Typography>
             </Grid>
           </Box>
-          <Typography className={classes.typeSubTitle} component="p" style={{textAlign: "center", marginBottom: "1em"}}>
-            Jump To: 
-          </Typography>
-          { products !== undefined && products.length !== 0 && <ProductJump groups={products} /> }
           {showSpinner && <LinearProgress />}
+
           <Box style={{ marginBottom: "5em" }}></Box>
-          {products !== undefined &&
-            products.length !== 0 &&
-            products.map((product, index) => {
-              return <ProductGroup key={index} productGroup={product} />;
-            })}
+
+          <Grid
+            container
+            direction="column"
+            className={classes.productGroup}
+            spacing={2}
+            style={{ alignItems: "center", marginBottom: "5em" }}
+          >
+            {brands !== undefined &&
+              brands.length !== 0 &&
+              brands.map((brand, index) => {
+                return <Product key={index} brand={brand} />;
+              })}
+          </Grid>
+
           <Box style={{ marginBottom: "2em" }}></Box>
 
           <Box style={{ marginBottom: "1em" }}></Box>
@@ -288,4 +262,4 @@ const Services = () => {
   );
 };
 
-export default Services;
+export default Products;

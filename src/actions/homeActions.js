@@ -6,6 +6,8 @@ export const getImages = async () => {
     imagesCollection {
       items {
         url
+        height
+        width
       }
     }
   }

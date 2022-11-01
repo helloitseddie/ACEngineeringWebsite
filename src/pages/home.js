@@ -118,9 +118,11 @@ const Home = () => {
           style={{ width: articleWidth }}
           id="article"
         >
-          <Box style={{ marginBottom: "5vh" }}></Box>
+          <Box style={{ marginBottom: "6vh" }}></Box>
           {showSpinner && <LinearProgress />}
-          {homeImages !== undefined && homeImages.length !== 0 && <GalleryCarousel images={homeImages} />}
+          {homeImages !== undefined && homeImages.length !== 0 && (
+            <GalleryCarousel images={homeImages} />
+          )}
           <div>
             <p
               className={classes.brandName}
@@ -132,12 +134,13 @@ const Home = () => {
                 marginRight: "1em",
               }}
             >
-              Providing precision cooling, humidity control, heating, and electrical solutions since 1980
+              Providing precision cooling, humidity control, heating, and
+              electrical solutions since 1980
             </p>
           </div>
           <hr className={classes.divLine} style={{ marginTop: "1.5em" }} />
           <Box style={{ marginBottom: "8em" }}></Box>
-          
+
           <Box style={{ marginBottom: "2em" }}></Box>
 
           <Box style={{ marginBottom: "1em" }}></Box>
