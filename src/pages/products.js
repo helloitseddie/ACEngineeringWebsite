@@ -113,8 +113,6 @@ const Product = (brand) => {
   const classes = useStyles();
   const { width } = GetWindow();
 
-  console.log(brand.brand.logo.height);
-
   return (
     <>
       <Grid item>
@@ -128,7 +126,7 @@ const Product = (brand) => {
           }}
         >
           <Grid
-            container={"product"}
+            container
             direction={width < 1000 ? "column" : "row"}
             spacing={5}
             alignItems="center"
@@ -137,7 +135,7 @@ const Product = (brand) => {
               width: "70vw",
             }}
           >
-            <Grid item={"product"} xs={width < 1000 ? 12 : 3}>
+            <Grid item xs={width < 1000 ? 12 : 3}>
               <Button
                 target="_blank"
                 href={brand.brand.url}
@@ -153,7 +151,7 @@ const Product = (brand) => {
               </Button>
             </Grid>
             <Grid
-              item={"product"}
+              item
               style={{
                 display: "flex",
                 flexDirection: "column",

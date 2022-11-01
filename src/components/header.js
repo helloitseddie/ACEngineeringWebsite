@@ -5,21 +5,10 @@ import useScrollTrigger from "@material-ui/core/useScrollTrigger";
 import { makeStyles } from "@material-ui/styles";
 import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
-// import Box from "@material-ui/core/Box";
-// import Grid from "@material-ui/core/Grid";
-// import { IconButton, Drawer, Hidden, Toolbar } from "@material-ui/core";
 import { Toolbar } from "@material-ui/core";
 import Button from "@material-ui/core/Button";
 import Paper from "@material-ui/core/Paper";
-// import Typography from "@material-ui/core/Typography";
 import { Link } from "react-router-dom";
-
-// import List from "@material-ui/core/List";
-// import ListItem from "@material-ui/core/ListItem";
-// import ListItemText from "@material-ui/core/ListItemText";
-
-// import { FaBars } from "react-icons/fa";
-// import { IoIosCloseCircleOutline } from "react-icons/io";
 
 import GetWindow from "./getWindow";
 
@@ -47,7 +36,6 @@ const useStyles = makeStyles((theme) => ({
     marginBottom: "2em",
   },
   logoContainer: {
-    // backgroundColor: "#f1f1f1",
     marginTop: "1.5em",
     marginBottom: "1em",
     display: "flex",
@@ -55,17 +43,8 @@ const useStyles = makeStyles((theme) => ({
       backgroundColor: "transparent",
     },
   },
-  tab: {
-    ...theme.typography.tab,
-    color: theme.palette.common.gray,
-    minWidth: 10,
-    marginLeft: "25px",
-  },
   newTab: {
-    ...theme.typography.tab,
     color: theme.palette.common.white,
-    minWidth: "1vw",
-    marginRight: "2vw",
     fontFamily: "acFont",
   },
   menu: {
@@ -134,17 +113,9 @@ const Header = ({ container }) => {
   const { width } = GetWindow();
   let onMobile = width > 1000 ? false : true;
   let logoWidth = onMobile ? "80%" : "100%";
-  let logoContainerDem = onMobile
-    ? { width: "50vw", height: "15vh" }
-    : {
-        width: "25vw",
-        height: "15vh",
-      };
   const history = useNavigate();
 
-  // const handleDrawerToggle = () => {
-  //   setDisplay(!displayMenu);
-  // };
+  console.log(width);
 
   const handleChange = (e, value) => {
     setValue(value);
@@ -188,6 +159,7 @@ const Header = ({ container }) => {
             style={{
               justifyContent: "center",
               backgroundColor: "#f1f1f1",
+              height: 170,
             }}
           >
             <Paper elevation={0} style={{ backgroundColor: "#f1f1f1" }}>
@@ -197,12 +169,12 @@ const Header = ({ container }) => {
                 disableRipple
                 onClick={() => setValue(0)}
                 className={classes.logoContainer}
-                style={logoContainerDem}
+                style={{ height: 125 }}
               >
                 <img
                   alt="company logo"
                   src={logo}
-                  style={{ width: logoWidth }}
+                  style={{ width: logoWidth, maxHeight: 130, maxWidth: 500 }}
                 />
               </Button>
             </Paper>
@@ -214,44 +186,69 @@ const Header = ({ container }) => {
               display: "flex",
               justifyContent: "center",
               alignItems: "center",
+              maxHeight: 50,
+              width: "101vw",
+              marginLeft: "-1vw",
             }}
           >
             <Tabs
               value={value}
               onChange={handleChange}
               indicatorColor="primary"
+              style={{
+                marginLeft: "-1vw",
+              }}
             >
               <Tab
                 className={classes.newTab}
-                style={{ fontSize: onMobile ? "2vw" : "1vw" }}
+                style={{
+                  fontSize: onMobile ? "2vw" : "1vw",
+                  minWidth: 30,
+                  marginRight: "2vw",
+                }}
                 component={Link}
                 to="/"
                 label="HOME"
               />
               <Tab
                 className={classes.newTab}
-                style={{ fontSize: onMobile ? "2vw" : "1vw" }}
+                style={{
+                  fontSize: onMobile ? "2vw" : "1vw",
+                  minWidth: 30,
+                  marginRight: "2vw",
+                }}
                 component={Link}
                 to="/about"
                 label="ABOUT US"
               />
               <Tab
                 className={classes.newTab}
-                style={{ fontSize: onMobile ? "2vw" : "1vw" }}
+                style={{
+                  fontSize: onMobile ? "2vw" : "1vw",
+                  minWidth: 30,
+                  marginRight: "2vw",
+                }}
                 component={Link}
                 to="/products"
                 label="PRODUCTS"
               />
               <Tab
                 className={classes.newTab}
-                style={{ fontSize: onMobile ? "2vw" : "1vw" }}
+                style={{
+                  fontSize: onMobile ? "2vw" : "1vw",
+                  minWidth: 30,
+                  marginRight: "2vw",
+                }}
                 component={Link}
                 to="/clients"
                 label="CLIENTS"
               />
               <Tab
                 className={classes.newTab}
-                style={{ fontSize: onMobile ? "2vw" : "1vw" }}
+                style={{
+                  fontSize: onMobile ? "2vw" : "1vw",
+                  minWidth: 30,
+                }}
                 component={Link}
                 to="/contact"
                 label="CONTACT US"

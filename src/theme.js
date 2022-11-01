@@ -16,11 +16,4 @@ export default createTheme({
       main: "#FFFFFF",
     },
   },
-  typography: {
-    tab: {
-      fontFamily: "Arial",
-      textTransform: "none",
-      fontSize: "1em",
-    },
-  },
 });

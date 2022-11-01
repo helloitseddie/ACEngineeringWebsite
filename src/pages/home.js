@@ -118,7 +118,7 @@ const Home = () => {
           style={{ width: articleWidth }}
           id="article"
         >
-          <Box style={{ marginBottom: "6vh" }}></Box>
+          <Box style={{ height: 50 }} />
           {showSpinner && <LinearProgress />}
           {homeImages !== undefined && homeImages.length !== 0 && (
             <GalleryCarousel images={homeImages} />
