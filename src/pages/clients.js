@@ -14,6 +14,9 @@ import LinearProgress from "@material-ui/core/LinearProgress";
 
 import background from "../assets/bg.png";
 
+import "../App.css";
+import "../assets/acFont.otf";
+
 const useStyles = makeStyles((theme) => ({
   articleContainer: {
     justifyContent: "center",
@@ -33,7 +36,7 @@ const useStyles = makeStyles((theme) => ({
   typeTitle: {
     color: theme.palette.common.blue,
     fontSize: "3em",
-    fontFamily: "Arial",
+    fontFamily: "acFont",
     fontWeight: 500,
     marginTop: "0.5em",
     marginBottom: "0.5em",
@@ -41,13 +44,13 @@ const useStyles = makeStyles((theme) => ({
   typeSubTitle: {
     color: theme.palette.common.gray,
     fontSize: "1.5em",
-    fontFamily: "Arial",
+    fontFamily: "acFont",
     fontWeight: 500,
   },
   type: {
     color: theme.palette.common.gray,
     fontSize: "1em",
-    fontFamily: "Arial",
+    fontFamily: "acFont",
     fontWeight: 0,
   },
   divLine: {
@@ -66,7 +69,8 @@ const useStyles = makeStyles((theme) => ({
     height: "10vw", 
     width: "16vw", 
     alignSelf: 'center', 
-    border: '1px solid #707070'
+    outline: '1px solid #707070', 
+    border: '3px solid white'
   }
 }));
 

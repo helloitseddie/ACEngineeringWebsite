@@ -15,6 +15,9 @@ import background from "../assets/bg.png";
 
 import { getProducts } from "../actions/productActions";
 
+import "../App.css";
+import "../assets/acFont.otf";
+
 const useStyles = makeStyles((theme) => ({
   articleContainer: {
     marginTop: "8vh",
@@ -39,19 +42,19 @@ const useStyles = makeStyles((theme) => ({
   typeTitle: {
     color: theme.palette.common.blue,
     fontSize: "3em",
-    fontFamily: "Arial",
+    fontFamily: "acFont",
     fontWeight: 500,
   },
   typeSubTitle: {
     color: theme.palette.common.gray,
     fontSize: "1.5em",
-    fontFamily: "Arial",
+    fontFamily: "acFont",
     fontWeight: 500,
   },
   type: {
     color: theme.palette.common.gray,
     fontSize: "1em",
-    fontFamily: "Arial",
+    fontFamily: "acFont",
     fontWeight: 0,
   },
   divLineTitle: {
@@ -77,13 +80,13 @@ const useStyles = makeStyles((theme) => ({
     color: theme.palette.common.blue,
     margin: "auto",
     fontSize: "2em",
-    fontFamily: "Arial",
+    fontFamily: "acFont",
     fontWeight: 0,
   },
   brandDesc: {
     color: theme.palette.common.gray,
     fontSize: "1em",
-    fontFamily: "Arial",
+    fontFamily: "acFont",
     fontWeight: 0,
     margin: "auto",
   },

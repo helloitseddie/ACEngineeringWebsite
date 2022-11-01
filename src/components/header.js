@@ -25,6 +25,9 @@ import GetWindow from "./getWindow";
 
 import logo from "../assets/newLogoBig.png";
 
+import "../App.css";
+import "../assets/acFont.otf";
+
 function ElevationScroll(props) {
   const { children } = props;
 
@@ -63,6 +66,7 @@ const useStyles = makeStyles((theme) => ({
     color: theme.palette.common.white,
     minWidth: "1vw",
     marginRight: "2vw",
+    fontFamily: "acFont"
   },
   menu: {
     backgroundColor: theme.palette.common.blue,
@@ -81,7 +85,7 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: "center",
     alignItems: "center",
     margin: "1em",
-    fontFamily: "Arial",
+    fontFamily: "acFont",
     textTransform: "none",
     fontSize: "1.5em",
     color: "white",
@@ -99,7 +103,7 @@ const useStyles = makeStyles((theme) => ({
     width: "50vw",
   },
   menuText: {
-    fontFamily: "Arial",
+    fontFamily: "acFont",
     "& span, & svg": {
       fontSize: "1.5rem",
       fontWeight: "bold",
@@ -219,196 +223,40 @@ const Header = ({ container }) => {
             >
               <Tab
                 className={classes.newTab}
-                style={{ fontSize: onMobile ? "3vw" : "1vw" }}
+                style={{ fontSize: onMobile ? "2vw" : "1.25vw" }}
                 component={Link}
                 to="/"
-                label="Home"
+                label="HOME"
               />
               <Tab
                 className={classes.newTab}
-                style={{ fontSize: onMobile ? "3vw" : "1vw" }}
+                style={{ fontSize: onMobile ? "2vw" : "1.25vw" }}
                 component={Link}
                 to="/about"
-                label="About Us"
+                label="ABOUT US"
               />
               <Tab
                 className={classes.newTab}
-                style={{ fontSize: onMobile ? "3vw" : "1vw" }}
+                style={{ fontSize: onMobile ? "2vw" : "1.25vw" }}
                 component={Link}
                 to="/products"
-                label="Products"
+                label="PRODUCTS"
               />
               <Tab
                 className={classes.newTab}
-                style={{ fontSize: onMobile ? "3vw" : "1vw" }}
+                style={{ fontSize: onMobile ? "2vw" : "1.25vw" }}
                 component={Link}
                 to="/clients"
-                label="Clients"
+                label="CLIENTS"
               />
               <Tab
                 className={classes.newTab}
-                style={{ fontSize: onMobile ? "3vw" : "1vw" }}
+                style={{ fontSize: onMobile ? "2vw" : "1.25vw" }}
                 component={Link}
                 to="/contact"
-                label="Contact Us"
+                label="CONTACT US"
               />
             </Tabs>
-            {/* {onMobile && (
-              <IconButton
-                onClick={() => {
-                  setDisplay(!displayMenu);
-                }}
-                style={{ marginLeft: "auto", marginRight: "2em" }}
-              >
-                <FaBars className={classes.icons} />
-              </IconButton>
-            )} */}
-            {/* {onMobile && (
-              <nav aria-label="mailbox folders">
-                <Hidden xsDown implementation="css">
-                  <Drawer
-                    container={container}
-                    variant="temporary"
-                    anchor={"right"}
-                    open={displayMenu}
-                    onClose={handleDrawerToggle}
-                    ModalProps={{
-                      keepMounted: true,
-                    }}
-                  >
-                    <Box className={classes.menuPopout}>
-                      <Box m={3}>
-                        <Grid container spacing={2} justifyContent="flex-end">
-                          <Grid item>
-                            <Button
-                              component={Link}
-                              to="/"
-                              disableRipple
-                              onClick={() =>
-                               setDisplay(!displayMenu)
-                              }
-                              style={{ width: "35vw", marginRight: "06vw" }}
-                            >
-                              <img
-                                alt="company logo"
-                                src={logo}
-                                style={{ width: logoWidth }}
-                              />
-                            </Button>
-                            <IconButton
-                              onClick={() => setDisplay(!displayMenu)}
-                            >
-                              <IoIosCloseCircleOutline
-                                className={classes.exit}
-                              />
-                            </IconButton>
-                          </Grid>
-                        </Grid>
-                      </Box>
-                      <List style={{ marginTop: "10vh" }}>
-                        <Typography className={classes.menuTitle} component="p">
-                          Navigate To
-                        </Typography>
-                        <hr className={classes.divLine} />
-                        <Link to={"/"} style={{ textDecoration: "none" }}>
-                          <ListItem
-                            button
-                            key="home"
-                            onClick={() => setDisplay(!displayMenu)}
-                            className={classes.menuOptions}
-                          >
-                            <ListItemText
-                              className={classes.menuText}
-                              primary="Home"
-                            />
-                          </ListItem>
-                        </Link>
-                        <hr className={classes.divLine} />
-                        <Link to={"/about"} style={{ textDecoration: "none" }}>
-                          <ListItem
-                            button
-                            key="about"
-                            onClick={() => setDisplay(!displayMenu)}
-                            className={classes.menuOptions}
-                          >
-                            <ListItemText
-                              className={classes.menuText}
-                              primary="About Us"
-                            />
-                          </ListItem>
-                        </Link>
-                        <hr className={classes.divLine} />
-                        <Link
-                          to={"/products"}
-                          style={{ textDecoration: "none" }}
-                        >
-                          <ListItem
-                            button
-                            key="products"
-                            onClick={() => setDisplay(!displayMenu)}
-                            className={classes.menuOptions}
-                          >
-                            <ListItemText
-                              className={classes.menuText}
-                              primary="Products"
-                            />
-                          </ListItem>
-                        </Link>
-                        <hr className={classes.divLine} />
-                        <Link
-                          to={"/clients"}
-                          style={{ textDecoration: "none" }}
-                        >
-                          <ListItem
-                            button
-                            key="clients"
-                            onClick={() => setDisplay(!displayMenu)}
-                            className={classes.menuOptions}
-                          >
-                            <ListItemText
-                              className={classes.menuText}
-                              primary="Clients"
-                            />
-                          </ListItem>
-                        </Link>
-                        <hr className={classes.divLine} />
-                        <Link
-                          to={"/contact"}
-                          style={{ textDecoration: "none" }}
-                        >
-                          <ListItem
-                            button
-                            key="contact"
-                            onClick={() => setDisplay(!displayMenu)}
-                            className={classes.menuOptions}
-                          >
-                            <ListItemText
-                              className={classes.menuText}
-                              primary="Contact Us"
-                            />
-                          </ListItem>
-                        </Link>
-                        <hr className={classes.divLine} />
-                      </List>
-                    </Box>
-                  </Drawer>
-                </Hidden>
-              </nav>
-            )} */}
-            {/* <div>
-              <p
-                className={classes.serve}
-                style={{
-                  textAlign: width < 1027 ? "center" : "",
-                  margin: 0,
-                  marginTop: "1em",
-                  marginBottom: "1em",
-                }}
-              >
-                Providing innovative precision cooling, power, and humidity HVAC
-                solutions to South Florida since 1980!
-              </p>
-            </div> */}
           </Paper>
         </AppBar>
       </ElevationScroll>

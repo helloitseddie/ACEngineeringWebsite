@@ -1,0 +1,5 @@
+@font-face {
+    font-family: "acFont";   /*Can be any text*/
+    src: local("acFont"),
+      url("./assets/acFont.otf") format("opentype");
+  }

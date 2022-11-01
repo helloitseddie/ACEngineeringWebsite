@@ -14,6 +14,9 @@ import background from "../assets/bg.png";
 
 import { getImages } from "../actions/homeActions";
 
+import "../App.css";
+import "../assets/acFont.otf";
+
 const useStyles = makeStyles((theme) => ({
   articleContainer: {
     marginTop: "8vh",
@@ -37,7 +40,7 @@ const useStyles = makeStyles((theme) => ({
   type: {
     color: theme.palette.common.blue,
     fontSize: "3em",
-    fontFamily: "Arial",
+    fontFamily: "acFont",
     fontWeight: "bold",
   },
   brands: {
@@ -50,8 +53,7 @@ const useStyles = makeStyles((theme) => ({
   brandName: {
     color: theme.palette.common.blue,
     margin: "auto",
-    fontSize: "2em",
-    fontFamily: "Arial",
+    fontFamily: "acFont",
     fontWeight: 0,
   },
   brandDesc: {
@@ -123,12 +125,14 @@ const Home = () => {
             <p
               className={classes.brandName}
               style={{
+                fontSize: width > 700 ? "2em" : "1em",
                 textAlign: "center",
-                margin: 0,
                 marginTop: "10vh",
+                marginLeft: "1em",
+                marginRight: "1em",
               }}
             >
-              Representing innovative HVAC and power brands since 1980
+              Providing precision cooling, humidity control, heating, and electrical solutions since 1980
             </p>
           </div>
           <hr className={classes.divLine} style={{ marginTop: "1.5em" }} />

@@ -7,6 +7,9 @@ import { Link } from "react-router-dom";
 
 import GetWindow from "./getWindow";
 
+import "../App.css";
+import "../assets/acFont.otf";
+
 const useStyles = makeStyles((theme) => ({
   bar: {
     backgroundColor: "#707070",
@@ -15,7 +18,7 @@ const useStyles = makeStyles((theme) => ({
   },
   text: {
     color: "white",
-    fontFamily: "Arial",
+    fontFamily: "acFont",
     fontSize: "1em",
     margin: 0,
   },

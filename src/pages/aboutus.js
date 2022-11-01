@@ -11,6 +11,9 @@ import GetWindow from "../components/getWindow";
 
 import background from "../assets/bg.png";
 
+import "../App.css";
+import "../assets/acFont.otf";
+
 const useStyles = makeStyles((theme) => ({
   articleContainer: {
     marginTop: "8vh",
@@ -31,13 +34,13 @@ const useStyles = makeStyles((theme) => ({
   type: {
     color: theme.palette.common.blue,
     fontSize: "1.25em",
-    fontFamily: "Arial",
+    fontFamily: "acFont",
     fontWeight: 100,
   },
   typeTitle: {
     color: theme.palette.common.blue,
     fontSize: "3em",
-    fontFamily: "Arial",
+    fontFamily: "acFont",
     fontWeight: 500,
     marginTop: "0.5em",
     marginBottom: "0.5em"

@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 
 import { makeStyles } from "@material-ui/styles";
@@ -17,6 +17,9 @@ import "react-toastify/dist/ReactToastify.min.css";
 import emailjs from "emailjs-com";
 
 import background from "../assets/bg.png";
+
+import "../App.css";
+import "../assets/acFont.otf";
 
 const useStyles = makeStyles((theme) => ({
   articleContainer: {
@@ -39,14 +42,14 @@ const useStyles = makeStyles((theme) => ({
   typeTitle: {
     color: theme.palette.common.gray,
     fontSize: "2em",
-    fontFamily: "Arial",
+    fontFamily: "acFont",
     fontWeight: 500,
     marginTop: "1em",
   },
   type: {
     color: theme.palette.common.gray,
     fontSize: "1em",
-    fontFamily: "Arial",
+    fontFamily: "acFont",
     fontWeight: 0,
   },
   divLine: {
@@ -57,11 +60,12 @@ const useStyles = makeStyles((theme) => ({
   },
   inputTitle: {
     fontWeight: "bold",
-    fontFamily: "Arial",
+    fontFamily: "acFont",
     marginTop: "1em",
   },
   formInput: {
     height: "2em",
+    fontFamily: "acFont",
   },
   message: {
     height: "8em",
@@ -71,7 +75,7 @@ const useStyles = makeStyles((theme) => ({
   },
   submitButt: {
     color: "white",
-    fontFamily: "Arial",
+    fontFamily: "acFont",
     marginTop: "1em",
     backgroundColor: theme.palette.common.blue,
   },
@@ -81,6 +85,8 @@ const Contact = () => {
   const classes = useStyles();
   const { width } = GetWindow();
   let articleWidth = width > 1000 ? "75%" : "100%";
+  let [successStatus, setSuccessStatus] = useState(false);
+  let [failStatus, setFailStatus] = useState(false);
 
   const {
     register,
@@ -118,8 +124,10 @@ const Contact = () => {
         `${process.env.REACT_APP_USER_ID}`
       );
       reset();
+      setSuccessStatus(true);
       toastifySuccess();
     } catch (e) {
+      setFailStatus(true);
       console.log(e);
     }
   };
@@ -255,6 +263,12 @@ const Contact = () => {
               >
                 {/* Row 1 of form */}
                 <div className="row formRow">
+                {failStatus && <Typography className={classes.inputTitle} style={{color: "red", fontSize: "1.25em"}} component="p">
+                    Something went wrong
+                  </Typography>}
+                  {successStatus && <Typography className={classes.inputTitle} style={{color: "green", fontSize: "1.25em"}} component="p">
+                    Successfully sent message!
+                  </Typography>}
                   <div className="col-6">
                     <Typography className={classes.inputTitle} component="p">
                       Name*
@@ -352,7 +366,7 @@ const Contact = () => {
                         required: true,
                       })}
                       className={classes.message}
-                      style={{ width: articleWidth, fontFamily: "Arial" }}
+                      style={{ width: articleWidth, fontFamily: "acFont" }}
                       placeholder="Message"
                     ></textarea>
                     <br />
