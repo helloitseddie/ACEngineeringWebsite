@@ -167,7 +167,7 @@ const Product = (brand) => {
                 {brand.brand.description}
               </Typography>
               <Typography className={classes.type} component="p">
-                <a href={brand.brand.url} className={classes.productLink}>
+                <a href={brand.brand.url} className={classes.productLink} target="_blank" rel="noreferrer">
                   Click Here To Learn More
                 </a>
               </Typography>
