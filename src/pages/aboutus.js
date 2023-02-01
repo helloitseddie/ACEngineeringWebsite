@@ -29,13 +29,10 @@ const useStyles = makeStyles((theme) => ({
     alignItems: "center",
     display: "flex",
     flexWrap: "wrap",
-    textAlign: "center",
   },
   type: {
-    color: theme.palette.common.blue,
-    fontSize: "1.25em",
+    color: theme.palette.common.gray,
     fontFamily: "acFont",
-    fontWeight: 100,
   },
   typeTitle: {
     color: theme.palette.common.blue,
@@ -43,7 +40,7 @@ const useStyles = makeStyles((theme) => ({
     fontFamily: "acFont",
     fontWeight: 500,
     marginTop: "0.5em",
-    marginBottom: "0.5em"
+    marginBottom: "0.5em",
   },
   logo: {
     float: "right",
@@ -63,6 +60,7 @@ const AboutUs = () => {
   const classes = useStyles();
   const { width } = GetWindow();
   let articleWidth = width > 1000 ? "75%" : "100%";
+  let isMobile = width > 1000 ? false : true;
 
   useEffect(() => {
     document.body.style = `background-image: url("${background}")`;
@@ -78,7 +76,10 @@ const AboutUs = () => {
           id="article"
         >
           <Box style={{ marginBottom: "6em" }}></Box>
-          <Box className={classes.aboutUsBox} style={{backgroundColor: "#f1f1f1"}}>
+          <Box
+            className={classes.aboutUsBox}
+            style={{ backgroundColor: "#f1f1f1" }}
+          >
             <Typography className={classes.typeTitle} component="p">
               About Us
             </Typography>
@@ -86,41 +87,119 @@ const AboutUs = () => {
           <Box
             className={classes.aboutUsBox}
             style={{
-              marginRight: width > 800 ? "10em" : "3em",
-              marginLeft: width > 800 ? "10em" : "3em",
+              marginRight: width > 800 ? "5em" : "3em",
+              marginLeft: width > 800 ? "5em" : "3em",
             }}
           >
             <Grid item>
-              <Typography className={classes.type} component="p">
-                AC Engineering Inc. has over 40 years of continuous sales and
-                design experience in South Florida involving critical
-                application and solutions for commercial and residential
-                buildings.
+              <Typography
+                className={classes.type}
+                component="p"
+                style={{
+                  textAlign: isMobile ? "center" : "left",
+                  fontSize: isMobile ? "1.1em" : "1.1vw",
+                }}
+              >
+                {!isMobile && "\u2003\u2003"}Mr. Joe Diaz, P.E. is a graduate
+                from University of South Florida with a Bachelor of Science in
+                Mechanical Engineering. He began his career with Tampa Electric
+                and continued with Reynolds Metals where they formed a joint
+                venture with the McClaren Racing Team designing and developing
+                aluminum engines for their Can Am race cars. Shortly thereafter,
+                they followed the same protocol with General Motors and Ford.
               </Typography>
+              <br />
               <br />
             </Grid>
             <Grid item>
-              <Typography className={classes.type} component="p">
-                AC Engineering Inc. is committed to providing integrated
-                solutions for mission critical applications involving precision
-                cooling and power support for data centers and healthcare
-                buildings, dehumidification for indoor pool environments, UV
-                lighting and indoor air quality solutions, and pre-fabricated
-                custom solutions for industrial-commercial rated HVAC and
-                electrical markets. In addition, AC Engineering Inc. is able to
-                support our customers during and after the construction process,
-                including all aspects of system procurement, start-up,
-                commissioning, monitoring, and maintenance to ensure that these
-                systems work as designed and adapt to the individual needs of
-                the end user.
+              <Typography
+                className={classes.type}
+                component="p"
+                style={{
+                  textAlign: isMobile ? "center" : "left",
+                  fontSize: isMobile ? "1.1em" : "1.1vw",
+                }}
+              >
+                {!isMobile && "\u2003\u2003"}In 1971, Joe became a P.E. in the
+                State of Florida with a Mechanical discipline. In the same year,
+                he joined and was immediately named partner of the two year old
+                firm Gemaire Distributors. He was named President of Gemaire
+                International and through very hard work, dedication and
+                constant travel abroad, he and his partners made Gemaire a
+                global company as sole distributors for Rheem globally and
+                Liebert internationally.
               </Typography>
             </Grid>
             <Grid item>
               <br />
-              <Typography className={classes.type} component="p">
-                AC Engineering Inc. has vast experience and expertise in the
-                following product lines, as well as many others, and can be
-                counted on as your consultative partner for your next project:
+              <br />
+              <Typography
+                className={classes.type}
+                component="p"
+                style={{
+                  textAlign: isMobile ? "center" : "left",
+                  fontSize: isMobile ? "1.1em" : "1.1vw",
+                }}
+              >
+                {!isMobile && "\u2003\u2003"}In 1980, he founded A.C.
+                Engineering, Inc. with a vision focused on data center HVAC and
+                electrical power - a pioneer of his time. He continued to
+                represent Liebert locally and had established a business
+                relationship and friendship with Ralph and Larry Liebert.
+              </Typography>
+            </Grid>
+            <Grid item>
+              <br />
+              <br />
+              <Typography
+                className={classes.type}
+                component="p"
+                style={{
+                  textAlign: isMobile ? "center" : "left",
+                  fontSize: isMobile ? "1.1em" : "1.1vw",
+                }}
+              >
+                {!isMobile && "\u2003\u2003"}He was first in representing
+                prestigious manufactures such as Multistack and Heat Pipe
+                Technology (HPT) in South Florida. He cemented the HPT brand as
+                a standard for HVAC dehumidification locally and internationally
+                in countries such as Panama and Japan. He was a Board member of
+                HPT for over 10 years.
+              </Typography>
+            </Grid>
+            <Grid item>
+              <br />
+              <br />
+              <Typography
+                className={classes.type}
+                component="p"
+                style={{
+                  textAlign: isMobile ? "center" : "left",
+                  fontSize: isMobile ? "1.1em" : "1.1vw",
+                }}
+              >
+                {!isMobile && "\u2003\u2003"}He founded the South Florida
+                chapter and was the founder and chairman of the international
+                chapters for AIPE (American Institute of Plant Engineers) which
+                was later renamed AFE (Association of Facilities Engineers). He
+                was a member of the Board for over 20 years.
+              </Typography>
+            </Grid>
+            <Grid item>
+              <br />
+              <br />
+              <Typography
+                className={classes.type}
+                component="p"
+                style={{
+                  textAlign: isMobile ? "center" : "left",
+                  fontSize: isMobile ? "1.1em" : "1.1vw",
+                }}
+              >
+                {!isMobile && "\u2003\u2003"}Carrying the same spirit moving
+                forward, A.C. Engineering, Inc. continues to be a leader in HVAC
+                and electrical power applications focusing on specialized
+                markets with the highest quality of products and services.
               </Typography>
             </Grid>
           </Box>

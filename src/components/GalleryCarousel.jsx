@@ -4,6 +4,8 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import GetWindow from "./getWindow";
 
+import "./scrollTop.css";
+
 const GalleryCarousel = ({ images }) => {
   //   slider settings
   const settings = {
