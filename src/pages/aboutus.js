@@ -100,7 +100,7 @@ const AboutUs = () => {
                   fontSize: isMobile ? "1.1em" : "1.1vw",
                 }}
               >
-                {!isMobile && "\u2003\u2003"}Mr. Joe Diaz, P.E. is a graduate
+                Mr. Joe Diaz, P.E. is a graduate
                 from University of South Florida with a Bachelor of Science in
                 Mechanical Engineering. He began his career with Tampa Electric
                 and continued with Reynolds Metals where they formed a joint
@@ -120,7 +120,7 @@ const AboutUs = () => {
                   fontSize: isMobile ? "1.1em" : "1.1vw",
                 }}
               >
-                {!isMobile && "\u2003\u2003"}In 1971, Joe became a P.E. in the
+                In 1971, Joe became a P.E. in the
                 State of Florida with a Mechanical discipline. In the same year,
                 he joined and was immediately named partner of the two year old
                 firm Gemaire Distributors. He was named President of Gemaire
@@ -141,7 +141,7 @@ const AboutUs = () => {
                   fontSize: isMobile ? "1.1em" : "1.1vw",
                 }}
               >
-                {!isMobile && "\u2003\u2003"}In 1980, he founded A.C.
+                In 1980, he founded A.C.
                 Engineering, Inc. with a vision focused on data center HVAC and
                 electrical power - a pioneer of his time. He continued to
                 represent Liebert locally and had established a business
@@ -159,7 +159,7 @@ const AboutUs = () => {
                   fontSize: isMobile ? "1.1em" : "1.1vw",
                 }}
               >
-                {!isMobile && "\u2003\u2003"}He was first in representing
+                He was first in representing
                 prestigious manufactures such as Multistack and Heat Pipe
                 Technology (HPT) in South Florida. He cemented the HPT brand as
                 a standard for HVAC dehumidification locally and internationally
@@ -178,7 +178,7 @@ const AboutUs = () => {
                   fontSize: isMobile ? "1.1em" : "1.1vw",
                 }}
               >
-                {!isMobile && "\u2003\u2003"}He founded the South Florida
+                He founded the South Florida
                 chapter and was the founder and chairman of the international
                 chapters for AIPE (American Institute of Plant Engineers) which
                 was later renamed AFE (Association of Facilities Engineers). He
@@ -196,7 +196,7 @@ const AboutUs = () => {
                   fontSize: isMobile ? "1.1em" : "1.1vw",
                 }}
               >
-                {!isMobile && "\u2003\u2003"}Carrying the same spirit moving
+                Carrying the same spirit moving
                 forward, A.C. Engineering, Inc. continues to be a leader in HVAC
                 and electrical power applications focusing on specialized
                 markets with the highest quality of products and services.
